@@ -24,6 +24,40 @@ const Products = ({ onProductCreated }) => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "/server/products",
+        data: productAttributes
+      });
+  
+      if (response.status >= 200 && response.status < 300) {
+        setProductAttributes({
+          image: "",
+          name: '',
+          description: '',
+          color: '',
+          size: '',
+          weight: '',
+          price: 0,
+        });
+  
+        // Pass the newly created product data to the parent component (ProductList)
+        onProductCreated(response.data); // This line sends the data to ProductList
+  
+        console.log('Product registered successfully:', response.data);
+      } else {
+        console.error('Error registering product:', response.data);
+      }
+    } catch (error) {
+      console.error('There was an error sending the request:', error);
+    }
+  };
+  
+
   // const handleImageUpload = (e) => {
   //   const file = e.target.files[0];
   //   const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -41,44 +75,45 @@ const Products = ({ onProductCreated }) => {
   //   }
   // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Submit button clicked'); // Add this line
-  // ...
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log('Submit button clicked'); // Add this line
+  // // ...
   
-    try {
-      const response = await axios({
-        method: "POST",
-        url: "/server/products",
-        data: productAttributes
-      });
+  //   try {
+  //     const response = await axios({
+  //       method: "POST",
+  //       url: "/server/products",
+  //       data: productAttributes
+  //     });
 
-      if (response.status >= 200 && response.status < 300) {
-        setProductAttributes({
-          image: "",
-          name: '',
-          description: '',
-          color: '',
-          size: '',
-          weight: '',
-          price: 0,
-        });
-        // ! also !!!! add to local state so we see this product now
+  //     if (response.status >= 200 && response.status < 300) {
+  //       setProductAttributes({
+  //         image: "",
+  //         name: '',
+  //         description: '',
+  //         color: '',
+  //         size: '',
+  //         weight: '',
+  //         price: 0,
+  //       });
+  //       // ! also !!!! add to local state so we see this product now
 
-        // Pass the newly created product data to the parent component (ProductList)
-        onProductCreated(response.data);
-        console.log('Product registered successfully:', response.data);
-      } else {
-        console.error('Error registering product:', response.data);
-      }
-    } catch (error) {
-      console.error('There was an error sending the request:', error);
-    }
-  };
+  //       // Pass the newly created product data to the parent component (ProductList)
+  //       onProductCreated(response.data);
+  //       console.log('Product registered successfully:', response.data);
+  //     } else {
+  //       console.error('Error registering product:', response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error('There was an error sending the request:', error);
+  //   }
+  // };
 
   return (
     <div className='product-container'>
-      <div clasName='custom-Column'>
+      <div className='custom-Column'>
       <h1 className='product-Heading'><strong>Product Customization</strong></h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -110,7 +145,7 @@ const Products = ({ onProductCreated }) => {
         </div>
         <br />
         <div>
-          <label htmlFor="description">Description:</label> <br />
+          <label htmlFor="description">Description:</label>
           <textarea
             id="description"
             name="description"
