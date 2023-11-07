@@ -1,0 +1,39 @@
+/* .productCheckout-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Create an 8-column grid */
+    /* padding: 1%; */
+    /* gap: 5rem;
+  } */
+   
+  .productList-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create a 4-column grid for the product list */
+    background-color:azure;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /* grid-column: 3/ span 6; Product List spans from columns 2 to 5 */
+    /* column-gap: 10%; */
+    /* margin: 10%; */
+  }
+  
+  .product-entry {
+    /* Define styles for individual product entries */
+    /* border: 1px solid #ccc; */
+    padding: 1rem;
+  }
+    
+  /* .center-SearchBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  
+  }  */
+  
+  .descriptionBox{
+    resize: none;
+    overflow: auto; /* Add scrollbars if content exceeds the specified dimensions */
+  }
+  

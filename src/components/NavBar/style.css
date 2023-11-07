@@ -1,0 +1,12 @@
+.NavBar{
+    display: flex;
+    flex-direction: row;
+    background-color: pink;
+    font-size: 25px;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    padding: 30px;
+  }
+  
+  

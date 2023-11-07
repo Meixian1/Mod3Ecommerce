@@ -1,0 +1,7 @@
+/* Add this to your CSS styles */
+.product-display-4x4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Adjust the gap between grid items as needed */
+  }
+  
